@@ -1,0 +1,807 @@
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, Dimensions, StyleSheet, Image, TextInput, TouchableHighlight, Alert } from 'react-native';
+import Constants from 'expo-constants';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+export default class App extends Component {
+    state = {
+        //mainPage: 'block',
+        failPage: 'none',
+        successPage: 'none',
+        budgetVal: '0.00',
+        priceTotal: 0,
+        quantTotal: 0,
+        imgCurr: true,
+        imgCurr1: true,
+        imgCurr2: true,
+        imgCurr3: true,
+        imgCurr4: true,
+        imgCurr5: true,
+        imgCurr6: true,
+        imgResource: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource1: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource2: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource3: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource4: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource5: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        imgResource6: 'https://codehs.com/uploads/072b30b7cbc0fbf6528e1f7a0c8b3e1f',
+        //CHOICE ONE
+        itemValue: 'Item Name',
+        quantVal: '#',
+        priceVal: 0,
+        //CHOICE TWO
+        itemValue2: 'Item Name',
+        quantVal2: '#',
+        priceVal2: 0,
+        //CHOICE THREE
+        itemValue3: 'Item Name',
+        quantVal3: '#',
+        priceVal3: 0,
+        //CHOICE FOUR
+        itemValue4: 'Item Name',
+        quantVal4: '#',
+        priceVal4: 0,
+        //CHOICE FIVE
+        itemValue5: 'Item Name',
+        quantVal5: '#',
+        priceVal5: 0,
+        //CHOICE SIX
+        itemValue6: 'Item Name',
+        quantVal6: '#',
+        priceVal6: 0,
+        //CHOICE SEVEN
+        itemValue7: 'Item Name',
+        quantVal7: '#',
+        priceVal7: 0,
+    }
+    
+    // add = () => {
+    //     //var num = total.toString();
+    //     this.setState ({
+    //         priceTotal: Number(this.state.priceVal) + Number(this.state.priceVal2) + Number(this.state.priceVal3) + Number(this.state.priceVal4) + Number(this.state.priceVal5) + Number(this.state.priceVal6) + Number(this.state.priceVal7)
+    //     })
+    // }
+    
+    //  addQuant = () => {
+    //     //var num = total.toString();
+    //     this.setState ({
+    //         quantTotal: Number(this.state.quantVal) + Number(this.state.priceVal2) + Number(this.state.priceVal3) + Number(this.state.priceVal4) + Number(this.state.priceVal5) + Number(this.state.priceVal6) + Number(this.state.priceVal7)
+    //     })
+    // }
+    
+    /*finalPage = () => {
+        if(this.state.budgetVal >= this.state.priceTotal)
+        {
+            successPage: 'block'
+            return(
+                <View style={styles.container}> 
+                    <View style={{display: this.state.successPage}}>
+                        <Text style={styles.headerSuccess}> Congratulations on your purchase! You stayed within your budget of </Text> this.state.budgetVal
+                    </View>
+                </View>
+            )
+        } else {
+             return(
+                <View style={styles.container}> 
+                    <View style={styles.failure}>
+                        <Text style={styles.headerFailure}> Congratulations on your purchase! Unfortunately, you did not stay on your budget of </Text> this.state.budgetVal
+                    </View>
+                </View>
+            )
+        }
+    }*/
+    
+    finalPage = () => {
+        if(this.state.budgetVal >= this.state.priceTotal)
+        {
+            this.setState ({
+                successPage: 'block',
+                failPage: 'none',
+                mainPage: 'none',
+        })
+        } else {
+             this.setState({ 
+                successPage: '',
+                failPage: 'block',
+                mainPage: 'none',
+            })
+        }
+    }
+    
+    handleWelcomePagePress = () => this.setState(state => ({
+        welcomePageDisplay: 'block',
+        infoPageDisplay: 'none',
+    }));
+  
+    
+    
+    switchImg = () => {
+        if (this.state.imgCurr == true) {
+            this.setState ({
+            imgResource: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal) * Number(this.state.quantVal),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal)
+        })
+        } else {
+            this.setState({ 
+                imgResource: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr: true
+            })
+        }
+    }
+    
+    switchImg1 = () => {
+        if (this.state.imgCurr1 == true) {
+            this.setState ({
+            imgResource1: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr1: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal2) * Number(this.state.quantVal2), 
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal2)
+        })
+        } else {
+            this.setState({ 
+                imgResource1: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr1: true
+            })
+        }
+    }
+    
+    switchImg2 = () => {
+        if (this.state.imgCurr2 == true) {
+            this.setState ({
+            imgResource2: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr2: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal3) * Number(this.state.quantVal3),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal3)
+        })
+        } else {
+            this.setState({ 
+                imgResource2: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr2: true
+            })
+        }
+    }
+    
+     switchImg3 = () => {
+        if (this.state.imgCurr3 == true) {
+            this.setState ({
+            imgResource3: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr3: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal4) * Number(this.state.quantVal4),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal4)
+        })
+        } else {
+            this.setState({ 
+                imgResource3: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr3: true
+            })
+        }
+    }
+    
+    switchImg4 = () => {
+        
+        if (this.state.imgCurr4 == true) {
+            this.setState ({
+            imgResource4: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr4: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal5) * Number(this.state.quantVal5),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal5)
+        })
+        } else {
+            this.setState({ 
+                imgResource4: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr4: true
+            })
+        }
+    }
+    
+    switchImg5 = () => {
+        
+        if (this.state.imgCurr5 == true) {
+            this.setState ({
+            imgResource5: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr5: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal6) * Number(this.state.quantVal6),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal6)
+        })
+        } else {
+            this.setState({ 
+                imgResource5: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr5: true
+            })
+        }
+    }
+    
+    switchImg6 = () => {
+        
+        if (this.state.imgCurr6 == true) {
+            this.setState ({
+            imgResource6: 'https://codehs.com/uploads/cd46d27d1fa332161fab2e230e1fb374',
+            imgCurr6: false,
+            priceTotal: this.state.priceTotal + Number(this.state.priceVal7) * Number(this.state.quantVal7),
+            quantTotal: this.state.quantTotal + Number(this.state.quantVal7)
+        })
+        } else {
+            this.setState({ 
+                imgResource6: 'https://codehs.com/uploads/94b0d68f2344cf2d7024f19fadd6e866',
+                imgCurr6: true
+            })
+        }
+    }
+
+    //CHOICE ONE
+    _handleTextChange = itemValue => {
+        this.setState({ itemValue });
+    };
+    
+    _handleTextChange2 = quantVal => {
+        this.setState({ quantVal });
+    };
+    
+    _handleTextChange3 = priceVal => {
+        this.setState({ priceVal });
+    };
+    //CHOICE TWO
+    _handleTextChange4 = itemValue2 => {
+        this.setState({ itemValue2});
+    };
+    
+    _handleTextChange5 = quantVal2 => {
+        this.setState({ quantVal2 });
+    };
+    
+    _handleTextChange6 = priceVal2 => {
+        this.setState({ priceVal2 });
+    };
+    //CHOICE THREE
+    _handleTextChange7 = itemValue3 => {
+        this.setState({ itemValue3 });
+    };
+    
+    _handleTextChange8 = quantVal3 => {
+        this.setState({ quantVal3 });
+    };
+    
+    _handleTextChange9 = priceVal3 => {
+        this.setState({ priceVal3 });
+    };
+    //CHOICE FOUR
+    _handleTextChange10 = itemValue4 => {
+        this.setState({ itemValue4 });
+    };
+    
+    _handleTextChange11 = quantVal4 => {
+        this.setState({ quantVal4 });
+    };
+    
+    _handleTextChange12 = priceVal4 => {
+        this.setState({ priceVal4 });
+    };
+    //CHOICE FIVE
+    _handleTextChange13 = itemValue5 => {
+        this.setState({ itemValue5 });
+    };
+    
+    _handleTextChange14 = quantVal5 => {
+        this.setState({ quantVal5 });
+    };
+    
+    _handleTextChange15 = priceVal5 => {
+        this.setState({ priceVal5 });
+    };
+    //CHOICE SIX
+    _handleTextChange16 = itemValue6 => {
+        this.setState({ itemValue6 });
+    };
+    
+    _handleTextChange17 = quantVal6 => {
+        this.setState({ quantVal6 });
+    };
+    
+    _handleTextChange18 = priceVal6 => {
+        this.setState({ priceVal6 });
+    };
+    //CHOICE SEVEN
+    _handleTextChange19 = itemValue7 => {
+        this.setState({ itemValue7 });
+    };
+    
+    _handleTextChange20 = quantVal7 => {
+        this.setState({ quantVal7 });
+    };
+    
+    _handleTextChange21 = priceVal7 => {
+        this.setState({ priceVal7 });
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>    
+                    <View style={styles.topBackground}>
+                        <Image
+                        source={{ uri: 'https://codehs.com/uploads/2ba7c240d4e56005a944cea0e9d0ecfc' }}
+                        style={{ height: windowHeight / 12, width: windowHeight / 12 , marginBottom: windowHeight / 50}}/>
+                        <Text style={styles.headerText}>Welcome Back, User</Text>
+                    
+                    </View>
+                    <View style={styles.middleBackground}>
+                        <View style={styles.budgetCont}>
+                            <Text style={styles.header2Text}>Current Budget: $</Text>
+                            
+                           <TextInput style={styles.budgetVal}
+                            onChangeText={(budgetVal) => this.setState({budgetVal})}
+                            value={this.state.budgetVal}
+                            />
+                        </View>
+                         
+                       
+                        <View style={styles.listChoices1}>
+                        
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource }}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue}
+                                onChangeText={this._handleTextChange}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal}
+                                onChangeText={this._handleTextChange2}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal}
+                                onChangeText={this._handleTextChange3}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                   
+                        <View style={styles.listChoices1}>
+                            
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg1}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource1}}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue2}
+                                onChangeText={this._handleTextChange4}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal2}
+                                onChangeText={this._handleTextChange5}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal2}
+                                onChangeText={this._handleTextChange6}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                       
+                        <View style={styles.listChoices1}>
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg2}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource2 }}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue3}
+                                onChangeText={this._handleTextChange7}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal3}
+                                onChangeText={this._handleTextChange8}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal3}
+                                onChangeText={this._handleTextChange9}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                        
+                      
+                        <View style={styles.listChoices1}>
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg3}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource3 }}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                                
+                                
+                            
+                            <TextInput
+                                value={this.state.itemValue4}
+                                onChangeText={this._handleTextChange10}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal4}
+                                onChangeText={this._handleTextChange11}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal4}
+                                onChangeText={this._handleTextChange12}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                        <View style={styles.listChoices1}>
+                           
+                           <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg4}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource4 }}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue5}
+                                onChangeText={this._handleTextChange13}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal5}
+                                onChangeText={this._handleTextChange14}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal5}
+                                onChangeText={this._handleTextChange15}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                       
+                        <View style={styles.listChoices1}>
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg5}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource5 }}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue6}
+                                onChangeText={this._handleTextChange16}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal6}
+                                onChangeText={this._handleTextChange17}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal6}
+                                onChangeText={this._handleTextChange18}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        <View style={styles.listChoices1}>
+                            <TouchableHighlight style={styles.widthCircle}
+                                onPress={this.switchImg6}
+                            >
+                                <Image
+                                    source={{uri: this.state.imgResource6}}
+                                    style={{ height: 24, width: 24 }}
+                                />
+                                
+                                
+                            </TouchableHighlight>
+                            
+                            <TextInput
+                                value={this.state.itemValue7}
+                                onChangeText={this._handleTextChange19}
+                                style={{ width: windowWidth / 2, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.quantVal7}
+                                onChangeText={this._handleTextChange20}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                            
+                            <TextInput
+                                value={this.state.priceVal7}
+                                onChangeText={this._handleTextChange21}
+                                style={{ width: windowWidth / 15, height: 'auto', borderBottom: 'solid', borderColor: '#3DADFF'}}
+                            />
+                        </View>
+                        
+                        
+                    </View>
+                    
+                    <View style={styles.bbContain}>
+                        <View style={styles.bottomButtons}>
+                        
+                            <View style={styles.priceButton}>
+                                <Text style={styles.bottomButtonHeader}>Total Price</Text>
+                                    ${this.state.priceTotal}
+                            </View>
+                            <View style={styles.itemsButton}>
+                                <Text style={styles.bottomButtonHeader}>Total Items</Text>
+                                {this.state.quantTotal}
+                            </View>
+                            
+                            
+                            <TouchableHighlight
+                                onPress={this.finalPage}
+                            >
+                                <View style={styles.completeButton}>
+                            
+                                <Text style={styles.bottomButtonComplete}>Complete Purchase</Text>
+                                
+                                </View>
+                            </TouchableHighlight>
+                            
+                        </View>
+                    </View> // end of main Page
+                    
+                    
+                    
+                    
+                    
+                    
+                <View style={{ display: this.state.successPage }}>
+                    <View style={styles.success}> 
+                            <Text style={styles.headerSuccess}> Congratulations on your purchase! {"\n"}{"\n"} You stayed within your budget of ${this.state.budgetVal}.</Text> 
+                    </View>
+                </View>
+                
+                <View style={{ display: this.state.failPage }}>
+                    <View style={styles.fail}>
+                        <Text style={styles.headerFail}>Congratulations on your purchase! {"\n"}{"\n"}However you did not stay within your budget of ${this.state.budgetVal}.</Text> 
+                    </View>
+                </View>   
+ 
+            </View> //container view
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    paragraph: {
+        margin: 24,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#34495e',
+    },
+    topBackground: {
+        backgroundColor: '#3DADFF',
+        height: windowHeight / 4.1,
+        width: 'auto',
+        justifyContent: 'flex-end',
+        paddingBottom: windowHeight / 15,
+        paddingLeft: windowHeight / 32
+    },
+    middleBackground: {
+        //backgroundColor: '#cae9f8',
+        backgroundColor: '#E7FAFE',
+        height: windowHeight / 1.2,
+        width: windowWidth,
+        borderRadius: 27,
+        position: 'absolute',
+        marginTop: windowHeight / 5,
+        marginBottom: windowHeight / 5
+    },
+    budgetCont: {
+        width: windowWidth / 1.1,
+        height: windowHeight / 15,
+        backgroundColor: '#a1d5f0',
+        borderRadius: 27,
+        flexDirection: 'column',
+        margin: windowHeight / 40,
+        justifyContent: 'center',
+        shadowColor: 'black',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    widthCircle: {
+        width: 32,
+        height: 'auto'
+    },
+    listChoices1: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 10,
+        width: windowWidth,
+        paddingLeft: windowHeight / 72,
+        paddingRight: windowHeight / 42
+    },
+    header2Text: {
+      fontWeight: 'bold',
+      fontSize: 18,
+      marginLeft: windowHeight / 32
+    },
+    headerText: {
+        color: 'white',
+        fontSize: 20
+    },
+    bottomButtonHeader: {
+        paddingTop: windowWidth / 32,
+        paddingBottom: windowWidth / 32
+    },
+    bottomButtonComplete: {
+      color: 'white',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 'auto',
+      textAlign: 'center'
+    },
+    budgetVal:{
+      position: 'absolute', 
+      marginLeft: windowWidth / 1.75, 
+      fontSize: 18,
+      width: windowWidth / 3.4,
+      fontWeight: 'bold'
+    },
+    bbContain: {
+      width:  windowWidth,
+      height: 'auto',
+      marginTop: windowHeight / 1.23,
+      justifyContent: 'flex-end',
+      flexDirection: 'column',
+      position: 'absolute',
+    },
+    bottomButtons:{
+        flexDirection: 'row',
+        height: 0.19 * windowHeight,
+        width: windowWidth,
+        alignItem: 'center',
+        justifyContent: 'center',
+    },
+    priceButton:{
+        backgroundColor: '#cae9f8',
+        borderRadius: 10,
+        //margins
+        marginTop: 0.005 * windowHeight,
+        marginBottom: 0.01 * windowHeight,
+        //marginLeft: 0.03 * windowWidth,
+        //dimenstions
+        height: 0.17 * windowHeight,
+        width: 0.27 * windowWidth,
+        //shadows
+        shadowColor: 'black',
+        shadowOffset: {width: -1, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        fontSize: windowWidth / 13,
+        alignItems: 'center'
+    },
+    priceButton2:{
+        backgroundColor: '#cae9f8',
+        borderRadius: 10,
+        //margins
+        marginTop: 0.005 * windowHeight,
+        marginBottom: 0.01 * windowHeight,
+        //marginLeft: 0.03 * windowWidth,
+        //dimenstions
+        height: 0.17 * windowHeight,
+        width: 0.27 * windowWidth,
+        //shadows
+        shadowColor: 'black',
+        shadowOffset: {width: -1, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        fontSize: windowWidth / 13,
+        alignItems: 'center',
+        color: 'red'
+    },
+    itemsButton:{
+        backgroundColor: '#cae9f8',
+        borderRadius: 10,
+        //margins
+        marginTop: 0.005 * windowHeight,
+        marginBottom: 0.01 * windowHeight,
+        marginRight: 0.05 * windowWidth,
+        marginLeft: 0.05 * windowWidth,
+        //dimensions
+        height: 0.17 * windowHeight,
+        width: 0.27 * windowWidth,
+        //shadows
+        shadowColor: 'black',
+        shadowOffset: {width: -1, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        fontSize: windowWidth / 13,
+        alignItems: 'center'
+    },
+    completeButton:{
+        backgroundColor: '#3DADFF',
+        borderRadius: 10,
+        //margins
+        marginTop: 0.005 * windowHeight,
+        marginBottom: 0.01 * windowHeight,
+        //dimensions
+        height: 0.17 * windowHeight,
+        width: 0.27 * windowWidth,
+        //shadows
+        shadowColor: 'black',
+        shadowOffset: {width: -1, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        justifyContent: 'center',
+        fontSize: windowWidth / 12,
+        alignItems: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    success: {
+        backgroundColor: '#ACFFAB',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        width: windowWidth,
+        height: windowHeight,
+        marginTop: -(windowHeight / 3.7)
+    },
+    headerSuccess:{
+        fontSize: 20,
+        fontColor: 'black',
+        textAlign: 'center',
+    },
+    fail: {
+        backgroundColor: '#FF817E',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        width: windowWidth,
+        height: windowHeight,
+        marginTop: -(windowHeight / 3.7)
+    },
+    headerFail:{
+        fontSize: 20,
+        fontColor: 'black',
+        textAlign: 'center',
+    }
+});

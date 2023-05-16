@@ -1,6 +1,6 @@
 # Grocer
 
-This is an app made on codeHS that allows users to make a list of the items of groceries that they need, maintain their desired budget, and determine if they were inside or outside of their desired budget.
+This is an app made on codeHS that allows users to make a list of the items of groceries that they need, maintain their desired budget, and determine if they were inside or outside of their desired budget. This was for a end of year project where we could decide what we could make. This was completed on May 16, 2023.
 
 
 
